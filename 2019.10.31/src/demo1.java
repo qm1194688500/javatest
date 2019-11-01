@@ -11,6 +11,5 @@ public class demo1 {
        int i = 0; int n = 100;
        sum = n*(n+1)/2;
         System.out.println(sum);*/
-
     }
 }
