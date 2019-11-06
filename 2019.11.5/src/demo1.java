@@ -12,7 +12,7 @@ public class demo1 {
         mySingleList.display();
         Node n = mySingleList.middleNode();
         System.out.println(n.data);
-        Node m = mySingleList.findKthToTail(7);
+        Node m = mySingleList.findKthToTail();
         System.out.println(m.data);
 
     }

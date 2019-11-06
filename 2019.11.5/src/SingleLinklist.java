@@ -179,7 +179,7 @@ class SingleLinkList{
    /* public Node findKthToTail(int key){
         Node fast = this.head;
         Node slow = this.head;
-       
+
         return slow;
     }*/
     //清除链表
