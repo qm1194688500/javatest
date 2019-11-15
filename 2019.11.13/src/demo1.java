@@ -15,6 +15,9 @@ public class demo1 {
         list.searchKey(0);
         list.deleteKey(0);
         list.display();
-
+        list.deleteAllkey(3);
+        list.display();
+        list.clear();
+        list.display();
     }
 }
