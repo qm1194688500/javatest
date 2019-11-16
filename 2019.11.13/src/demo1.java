@@ -4,6 +4,7 @@ public class demo1 {
         list.addFirst(1);
         list.addFirst(2);
         list.addFirst(3);
+        list.addFirst(4);
         list.addLast(1);
         list.addLast(2);
         list.addLast(3);

@@ -1,11 +1,3 @@
-class ListNode{
-    public int data;
-    public ListNode next;
-    public ListNode(int data){
-        this.data=data;
-        this.next=null;
-    }
-}
 public class SingleLinkList {
     public ListNode head;
     public SingleLinkList(){
@@ -220,11 +212,115 @@ public class SingleLinkList {
         }
         return newHead.next;
     }
-    //编写代码，以给定值x为基准将链表分割成两部分，所有小于x的节点排在大于x的节点之前。
-    
+    //编写代码，以给定值x为基准将链表分割成两部分，所有小于x的节点排在大于或等于x的节点之前。
+    public ListNode partition1(ListNode pHead, int x) {
+            if (pHead==null||pHead.next==null){
+                return pHead;
+            }
+            ListNode smallFirst = null;
+            ListNode smallEnd = null;
+            ListNode bigFirst = null;
+            ListNode bigEnd = null;
+            ListNode cur = pHead;
+            while (cur!= null){
+                if (cur.data<x){
+                    if (smallFirst==null){
+                        smallFirst=cur;
+                        smallEnd=cur;
+                    }else{
+                        smallEnd.next=cur;
+                        smallEnd = smallEnd.next;
+                    }
+                }else{
+                    if (bigFirst==null){
+                        bigFirst=cur;
+                        bigEnd=cur;
+                    }else{
+                        bigEnd.next = cur;
+                        bigEnd = bigEnd.next;
+                    }
+                }
+                cur = cur.next;
+            }
+            if (smallFirst==null){
+                return bigFirst;
+            }
+            smallEnd.next=bigFirst;
+            if(bigFirst!=null){
+                bigEnd.next=null;
+            }
+            return smallFirst;
+    }
+    public ListNode partition2(ListNode pHead, int x) {
+        if(pHead==null||pHead.next==null){
+            return pHead;
+        }
+        ListNode small = new ListNode(-1);
+        ListNode big = new ListNode(-1);
+        ListNode cur1 = small;
+        ListNode cur2 = big;
+        ListNode cur = pHead;
+        while (cur!=null){
+            if (cur.data<x){
+                cur1.next=cur;
+                cur1=cur1.next;
+            }else{
+                cur2.next=cur;
+                cur2=cur2.next;
+            }
+            cur = cur.next;
+        }
+        if(small==null){
+            return big.next;
+        }
+        cur1.next=big.next;
+        if(big!=null){
+            cur2.next=null;
+        }
+        return small.next;
+    }
     //在一个排序的链表中，存在重复的结点，请删除该链表中重复的节点，重复的节点不保存，返回链表头指针。
-
+    public ListNode deleteDuplication(ListNode pHead){
+        if (pHead==null||pHead.next==null){
+            return pHead;
+        }
+        ListNode newHead = new ListNode(-1);
+        ListNode temp = newHead;
+        ListNode cur = pHead;
+        while (cur!=null){
+            if (cur.next!=null&&cur.data==cur.next.data){
+                while (cur.next!=null&&cur.data==cur.next.data){
+                    cur = cur.next;
+                }
+                cur  = cur.next;
+            }else{
+                temp.next=cur;
+                temp = temp.next;
+                cur = cur.next;
+            }
+        }
+        temp.next=null;
+        return newHead.next;
+    }
     //输入两个链表，找出它们的第一个公共结点。
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA==null||headB==null){
+            return null;
+        }
+        ListNode curA = headA;
+        ListNode curB = headB;
+        while (curA!=curB){
+            curA = curA==null? headB:curA.next;
+            curB = curB==null?headA:curB.next;
+        }
+        return curA;
+    }
+    //链表的回文结构.
+
+    //给定一个链表，判断链表中是否有环。
+
+    //给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null.
+
 
     }
 
