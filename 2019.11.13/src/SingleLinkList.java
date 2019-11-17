@@ -182,6 +182,30 @@ public class SingleLinkList {
         }
         return last;
     }
+    //合并两个链表
+    public ListNode mergeTwoLists2(ListNode l1, ListNode l2){
+        if (l1==null){
+            return l2;
+        }
+        if (l2==null){
+            return l1;
+        }
+        ListNode newHead = new ListNode(-1);
+        ListNode cur1 = l1;
+        ListNode cur2 = l2;
+        ListNode temp = newHead;
+        while(cur1!=null&&cur2!=null){
+            if (cur1.data<cur2.data){
+                temp.next = cur1;
+                cur1 = cur1.next;
+            }else{
+                temp.next = cur2;
+               cur2 = cur2.next;
+            }
+            temp = temp.next;
+        }
+        return newHead.next;
+    }
     //将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接两个链表给定的所有元素组成的。
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode newHead = new ListNode(-1);
@@ -320,8 +344,7 @@ public class SingleLinkList {
     //给定一个链表，判断链表中是否有环。
 
     //给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null.
-
-
+    
     }
 
 
