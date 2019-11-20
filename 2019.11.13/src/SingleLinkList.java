@@ -339,6 +339,20 @@ public class SingleLinkList {
         }
         return curA;
     }
+    //删除链表中等于给定值 val 的所有节点。
+    public ListNode removeElements(ListNode head, int val) {
+        ListNode newHead = new ListNode(-1);
+        newHead.next = head;
+        ListNode pre = newHead;
+        while(pre.next!=null){
+            if(pre.next.data==val){
+                pre.next = pre.next.next;
+            }else{
+                pre = pre.next;
+            }
+        }
+        return newHead.next;
+    }
     //链表的回文结构.
 
     //给定一个链表，判断链表中是否有环。
