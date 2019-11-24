@@ -353,12 +353,70 @@ public class SingleLinkList {
         }
         return newHead.next;
     }
-    //链表的回文结构.
-
+    //判断链表是否为回文结构.
+    public boolean chkPalindrome(ListNode A) {
+        ListNode fast = A;
+        ListNode slow = A;
+        while (fast!=null&&fast.next!=null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        ListNode cur = slow.next;
+        while (cur!=null){
+           ListNode curNext = cur.next;
+           cur.next = slow;
+           slow = cur;
+           cur = curNext;
+        }
+        while (A!=slow){
+            if (A.data ==slow.data){
+                A = A.next;
+                slow = slow.next;
+                if (A.next==slow){
+                    return true;
+                }
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
     //给定一个链表，判断链表中是否有环。
-
+    public boolean hasCycle(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast!=null&&fast.next!=null){
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast==slow){
+                return true;
+            }
+        }
+        return false;
+    }
     //给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null.
-
+    public ListNode detectCycle(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        ListNode cur=null;
+        while (fast!=null&&fast.next!=null){
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast ==slow){
+                 cur = fast;
+                break;
+            }
+        }
+        if (cur==null){
+            return null;
+        }
+        ListNode temp = head;
+        while (temp != cur){
+            temp = temp.next;
+            cur = cur.next;
+        }
+        return temp;
+    }
     }
 
 
