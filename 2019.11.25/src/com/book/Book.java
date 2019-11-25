@@ -1,4 +1,6 @@
 package com.book;
+
+
 public class Book {
     private String name;
     private String author;
@@ -51,5 +53,17 @@ public class Book {
 
     public void setBorrowed(boolean borrowed) {
         isBorrowed = borrowed;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", price=" + price +
+                ", type='" + type + '\'' +
+                ","+ (isBorrowed == true ? "已经借出":"未借出")+
+                //", isBorrowed=" + isBorrowed +
+                '}';
     }
 }

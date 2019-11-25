@@ -1,11 +1,14 @@
+package com;
 
 import com.book.BookList;
-import User.Admin;
-import User.NormalUser;
-import User.User;
+import com.user.Admin;
+import com.user.NormalUser;
+import com.user.User;
 
 import java.util.Scanner;
+
 public class Main {
+
     public static User login() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入姓名：");
@@ -18,17 +21,15 @@ public class Main {
             return new NormalUser(name);
         }
     }
-
     public static void main(String[] args) {
         //准备书籍
         BookList bookList = new BookList();
         //登录  返回对象  Admin    NormalUser
         User user =  login();
-
-        int choice =  user.menu();//1
-        //如何去对应操作  Admin    NormalUser
-        user.doOperation(choice,bookList);
+        while (true) {
+            int choice =  user.menu();//1
+            //如何去对应操作  Admin    NormalUser
+            user.doOperation(choice,bookList);
+        }
     }
-}
-
 }
