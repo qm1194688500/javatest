@@ -417,6 +417,22 @@ public class SingleLinkList {
         }
         return temp;
     }
+    public ListNode oddEvenList(ListNode head) {
+        if (head==null||head.next==null){
+            return head;
+        }
+        ListNode head1 = head;
+        ListNode head2 = head.next;
+        ListNode evenHead = head2;
+        while (head2!=null&&head2.next!=null){
+            head1.next =head2.next ;
+            head1 = head1.next;
+           head2.next = head1.next;
+           head2 = head2.next;
+        }
+        head1.next = evenHead;
+        return head;
+    }
     }
 
 
