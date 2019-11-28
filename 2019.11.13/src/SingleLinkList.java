@@ -417,6 +417,7 @@ public class SingleLinkList {
         }
         return temp;
     }
+    //给定一个单链表，把所有的奇数节点和偶数节点分别排在一起。请注意，这里的奇数节点和偶数节点指的是节点编号的奇偶性，而不是节点的值的奇偶性。
     public ListNode oddEvenList(ListNode head) {
         if (head==null||head.next==null){
             return head;
@@ -431,6 +432,22 @@ public class SingleLinkList {
            head2 = head2.next;
         }
         head1.next = evenHead;
+        return head;
+    }
+    //给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode fast = head;
+        ListNode slow = head;
+        int count = 0;
+        while (fast!=null&&fast.next!=null){
+            if (count<n){
+                fast = fast.next;
+                count++;
+            }
+            fast = fast.next;
+            slow = slow.next;
+        }
+        slow.next = slow.next.next;
         return head;
     }
     }
