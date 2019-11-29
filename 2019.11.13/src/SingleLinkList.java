@@ -354,32 +354,36 @@ public class SingleLinkList {
         return newHead.next;
     }
     //判断链表是否为回文结构.
-    public boolean chkPalindrome(ListNode A) {
-        ListNode fast = A;
-        ListNode slow = A;
-        while (fast!=null&&fast.next!=null){
-            fast = fast.next.next;
-            slow = slow.next;
+    public boolean isPalindrome(ListNode head) {
+        if(head==null||head.next==null){
+            return true;
         }
-        ListNode cur = slow.next;
-        while (cur!=null){
-           ListNode curNext = cur.next;
-           cur.next = slow;
-           slow = cur;
-           cur = curNext;
-        }
-        while (A!=slow){
-            if (A.data ==slow.data){
-                A = A.next;
-                slow = slow.next;
-                if (A.next==slow){
-                    return true;
-                }
+        if (head.next.next==null){
+            if (head.data==head.next.data){
+                return true;
             }else{
                 return false;
             }
         }
-        return true;
+        ListNode fast = head;
+        ListNode slow = head;
+        ListNode cur =null;
+        while(fast!=null&&fast.next!=null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        if (fast!=null){
+            cur = slow.next;
+        }else{
+            cur = slow;
+        }
+        while (cur!=null){
+            ListNode curNext = cur.next;
+            cur.next = slow;
+            slow = cur;
+            cur = curNext;
+        }
+
     }
     //给定一个链表，判断链表中是否有环。
     public boolean hasCycle(ListNode head) {
