@@ -1,7 +1,7 @@
 public class demo1 {
     public static void main(String[] args) {
         SingleLinkList list = new SingleLinkList();
-        list.addFirst(1);
+        /*list.addFirst(1);
         list.addFirst(2);
         list.addFirst(3);
         list.addFirst(4);
@@ -19,6 +19,12 @@ public class demo1 {
         list.deleteAllkey(3);
         list.display();
         list.clear();
+        list.display();*/
+        list.addFirst(1);
+        list.addFirst(0);
+        list.addFirst(0);
+        list.addFirst(1);
         list.display();
+        System.out.println(list.isPalindrome(list.head));
     }
 }
