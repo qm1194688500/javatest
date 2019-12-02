@@ -452,6 +452,25 @@ public class SingleLinkList {
         slow.next = slow.next.next;
         return head;
     }
+    //给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
+    //你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换
+    public ListNode swapPairs(ListNode head) {
+        if(head==null){
+            return null;
+        }
+        ListNode newHead = new ListNode(-1);
+        newHead.next = head;
+        ListNode cur = newHead;
+        while(cur.next!=null&&cur.next.next!=null){
+            ListNode start = cur.next;
+            ListNode end = cur.next.next;
+            cur.next=end;
+            start.next = end.next;
+            end.next = start;
+            cur = start;
+        }
+        return newHead.next;
+    }
     }
 
 
