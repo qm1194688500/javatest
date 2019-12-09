@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 class Student{
     public String name;
@@ -24,10 +23,18 @@ public class Test1 {
         students.add(new Student("张三","一班",50.0));
         students.add(new Student("王五","二班",60.0));
         students.add(new Student("李四","三班",70.0));
-        System.out.println(students.toString());
+        //System.out.println(students.toString());
         /*for (Student student:students
              ) {
             System.out.println(student);
         }*/
+        ListIterator it = students.listIterator();
+        while (it.hasNext()){
+            System.out.println(it.next());
+        }
+        System.out.println("-----------");
+        while (it.hasPrevious()){
+            System.out.println(it.previous());
+        }
     }
 }

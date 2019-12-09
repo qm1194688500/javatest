@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Demo1 {
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         Map<String,String> map = new HashMap<>();
         map.put("及时雨","宋江");
         map.put("国民老公","胡歌");
@@ -15,13 +15,16 @@ public class Demo1 {
             System.out.println(entry.getKey()+" " +entry.getValue());
         }
     }
-    public static void main1(String[] args) {
+    public static void main(String[] args) {
         Collection<String> collection = new ArrayList<>();
         collection.add("java");
         collection.add("hello");
-        System.out.println(collection.size());
-        collection.remove("java");
-        System.out.println(collection);
-
+        //System.out.println(collection.size());
+        //collection.remove("java");
+       // System.out.println(collection);
+        Iterator it = collection.iterator();
+        while (it.hasNext()){
+            System.out.println(it.next());
+        }
     }
 }
