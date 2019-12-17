@@ -1,6 +1,5 @@
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 class TreeNode{
     char val;
@@ -42,6 +41,41 @@ class TreeNode{
         preOrderTraversal(root.left);
         preOrderTraversal(root.right);
     }
+    //前序遍历（非递归形式）
+     List<Character> preOrderTraversalNor(TreeNode root){
+        List<Character> list = new ArrayList<>();
+         Stack<TreeNode> stack = new Stack<>();
+         TreeNode cur = root;
+         while (cur!=null||!stack.empty()){
+             while (cur!=null){
+                 stack.push(cur);
+                 System.out.println(cur.val+"");
+                 list.add(cur.val);
+                 cur = cur.left;
+             }
+             cur = stack.pop();
+             cur = cur.right;
+         }
+         return list;
+     }
+     //层序遍历
+     public void levelOrderTraversal(TreeNode root){
+         Queue<TreeNode> queue = new LinkedList<>();
+         if (root==null){
+             queue.offer(root);
+         }
+         while (!queue.isEmpty()){
+             TreeNode cur = queue.poll();
+             System.out.println(cur.val + "");
+         if (cur.left!=null){
+             queue.offer(cur.left);
+         }
+         if (cur.right!=null){
+             queue.offer(cur.right);
+         }
+         }
+
+     }
     public void inOrderTraver(TreeNode root){
         if (root == null){
             return;
@@ -128,5 +162,44 @@ class TreeNode{
             return true;
         }
         return false;
+    }
+    //求二叉树的最大深度
+    public int maxDepth(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        int leftHight = maxDepth(root.left);
+        int rightHight = maxDepth(root.right);
+
+        return leftHight > rightHight
+                ? leftHight + 1 : rightHight + 1;
+
+    }
+    //判断是否是平衡二叉树
+    public boolean isBalanced(TreeNode root) {
+        if (root==null){
+            return true;
+        }
+        int leftHeight = maxDepth(root.left);
+        int rightHeight = maxDepth(root.right);
+        return Math.abs(leftHeight-rightHeight)<=1&&isBalanced(root.left)&&isBalanced(root.right);
+    }
+    //判断二叉树是否是对称二叉树
+     public boolean isSymmetrcChild(TreeNode leftTree,TreeNode rightTree){
+        if (leftTree==null&&rightTree==null){
+            return true;
+        }
+        if (leftTree==null||rightTree==null){
+            return false;
+        }
+        return leftTree.val==rightTree.val&&isSymmetrcChild(leftTree.right,rightTree.left)
+                &&isSymmetrcChild(leftTree.left,rightTree.right);
+     }
+
+    public boolean isSymmetric(TreeNode root) {
+        if (root==null){
+            return false;
+        }
+        return isSymmetrcChild(root.left,root.right);
     }
 }
