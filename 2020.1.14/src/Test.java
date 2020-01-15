@@ -12,4 +12,13 @@ public class Test {
         }
         System.out.print(x % 10);
     }
+    public  static String toLowerCase(String str) {
+        char[] chars = str.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            if(chars[i]<='Z' && chars[i]>='A'){
+                chars[i] = (char) ((byte)chars[i] + 32);
+            }
+        }
+        return String.valueOf(chars);
+    }
 }
