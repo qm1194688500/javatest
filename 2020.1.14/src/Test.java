@@ -6,9 +6,12 @@ public class Test {
         int y = 5;
         System.out.println(x+y+"" +(x+y)+y);
         mystery(1234);*/
-        int[] array = {1,2,3,4,5};
+        /*int[] array = {1,2,3,4,5};
         rotate(array,2);
-        System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(array));*/
+        int[] array = {1,3,4,5,6};
+        int n = searchInsert(array,2);
+        System.out.println(n);
     }
     public static void mystery (int x) {
         System.out.print(x % 10);
@@ -48,5 +51,27 @@ public class Test {
             }
         }
         return i;
+    }
+    //给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
+    //你可以假设数组中无重复元素。
+    public static int searchInsert(int[] nums, int target) {
+        int left = 0,right = nums.length-1;
+        while(left<=right){
+            int mid = (left+right)/2;
+            if (nums[mid]==target){
+                return mid;
+            }else if (nums[mid]<target){
+                left = mid+1;
+            }else{
+                right = mid-1;
+            }
+        }
+        return left;
+    }
+    //给定一个赎金信 (ransom) 字符串和一个杂志(magazine)字符串，
+    // 判断第一个字符串ransom能不能由第二个字符串magazines里面的字符构成。
+    // 如果可以构成，返回 true ；否则返回 false
+    public boolean canConstruct(String ransomNote, String magazine) {
+
     }
 }
