@@ -9,9 +9,9 @@ public class Test {
         /*int[] array = {1,2,3,4,5};
         rotate(array,2);
         System.out.println(Arrays.toString(array));*/
-        int[] array = {1,3,4,5,6};
-        int n = searchInsert(array,2);
-        System.out.println(n);
+        /*int[] array = {1,3,4,5,6};
+        int n = searchInsert(array,2);*/
+        System.out.println();
     }
     public static void mystery (int x) {
         System.out.print(x % 10);
@@ -72,6 +72,22 @@ public class Test {
     // 判断第一个字符串ransom能不能由第二个字符串magazines里面的字符构成。
     // 如果可以构成，返回 true ；否则返回 false
     public boolean canConstruct(String ransomNote, String magazine) {
-
+        if (magazine.length()<ransomNote.length()){
+            return false;
+        }
+        StringBuilder sb = new StringBuilder(magazine);
+        for (int i = 0; i <ransomNote.length() ; i++) {
+            if (!sb.substring(0).contains(ransomNote.charAt(i)+"")){
+                return false;
+            }else{
+                sb.deleteCharAt(sb.indexOf(ransomNote.charAt(i)+""));
+            }
+        }
+        return true;
+    }
+    //判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+    public boolean isPalindrome(int x) {
+        String str = (new StringBuilder(x)).reverse().toString();
+        return (new String(x+"")).equals(str);
     }
 }
