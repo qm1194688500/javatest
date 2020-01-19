@@ -11,7 +11,9 @@ public class Test {
         System.out.println(Arrays.toString(array));*/
         /*int[] array = {1,3,4,5,6};
         int n = searchInsert(array,2);*/
-        System.out.println();
+        String s = "a ";
+        int x = lengthOfLastWord(s);
+        System.out.println(x);
     }
     public static void mystery (int x) {
         System.out.print(x % 10);
@@ -89,5 +91,18 @@ public class Test {
     public boolean isPalindrome(int x) {
         String str = (new StringBuilder(x)).reverse().toString();
         return (new String(x+"")).equals(str);
+    }
+    //给定一个仅包含大小写字母和空格 ' ' 的字符串 s，返回其最后一个单词的长度
+    public static int lengthOfLastWord(String s) {
+        int length = 0;
+        for (int i = s.length()-1; i >=0 ; i--) {
+            if (s.charAt(i)!=' '){
+                length++;
+            }
+            if (s.charAt(i)==' '&&length!=0){
+                break;
+            }
+        }
+        return length;
     }
 }
