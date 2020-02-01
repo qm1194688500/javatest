@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Stack;
 
 public class Test {
     public static void main(String[] args) {
@@ -176,12 +177,19 @@ public class Test {
     }
     //给定一个字符串 S，返回 “反转后的” 字符串，其中不是字母的字符都保留在原地，而所有字母的位置发生反转。
     public String reverseOnlyLetters(String S) {
-        int len = S.length();
-        char[] temp = new char[len];
-        for (int i = 0; i <len ; i++) {
-            if (Character.isLowerCase(S.charAt(i))){
-                temp[]
-            }
+        Stack<Character> letters = new Stack();
+        for (char c: S.toCharArray())
+            if (Character.isLetter(c))
+                letters.push(c);
+
+        StringBuilder ans = new StringBuilder();
+        for (char c: S.toCharArray()) {
+            if (Character.isLetter(c))
+                ans.append(letters.pop());
+            else
+                ans.append(c);
         }
+
+        return ans.toString();
     }
 }
