@@ -19,7 +19,13 @@ public class HashBucket {
 
         int index = key % array.length;
         //遍历array[index]下标的链表，找到值为key的数据，并且返回
-
-
+        Node cur = array[index].next;
+        while (cur!=null){
+            if (cur.value==key){
+                return cur.value;
+            }
+            cur = cur.next;
+        }
+        return 0;
     }
 }
