@@ -1,14 +1,18 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        String A = "aba";
-        String B = "b";
+        Scanner sc = new Scanner(System.in);
+        String A = sc.nextLine();
+        String B = sc.nextLine();
         int x = method(A,B);
         System.out.println(x);
     }
     public static int method(String A,String B){
         int i = 0;
-        StringBuilder stringBuilder = new StringBuilder(A);
-        for (int j = 0; j <=stringBuilder.length() ; j++) {
+
+        for (int j = 0; j <=A.length() ; j++) {
+            StringBuilder stringBuilder = new StringBuilder(A);
             stringBuilder.insert(j,B);
 
             if (judege(stringBuilder.toString())){
