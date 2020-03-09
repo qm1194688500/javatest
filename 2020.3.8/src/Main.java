@@ -4,17 +4,25 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int A = sc.nextInt();
         int B = sc.nextInt();
-        System.out.println(method(A,B));
+        System.out.println(method2(A,B));
     }
     public static int method(int A,int B){
-        if (A<B&&B%A==0){
-
-            return B;
+        int x = A;
+        int y = B;
+        while(y!=0){
+            if (x>y){
+                int temp = x;
+                x = y;
+                y = temp%y;
+            }else{
+                int temp = x;
+                x = y;
+                y = temp;
+            }
         }
-        if (A>B&&A%B==0){
-
-            return A;
-        }
-        return A*B;
+        return x;
+    }
+    public static int method2(int a, int b){
+        return a*b/method(a,b);
     }
 }
