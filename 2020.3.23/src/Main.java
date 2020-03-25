@@ -3,7 +3,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        
+
     }
     public boolean[] chkSubStr(String[] p, int n, String s) {
         boolean[] array = new boolean[p.length];
