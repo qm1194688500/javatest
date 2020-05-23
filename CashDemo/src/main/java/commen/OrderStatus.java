@@ -1,5 +1,11 @@
 package commen;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@ToString
 public enum OrderStatus {
     PLAYING(1,"待支付"),OK(2,"支付完成");
     private int flg;
