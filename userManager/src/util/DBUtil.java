@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBUtil {
-    private static String url = "jdbc:mysql://127.0.0.1:3306/usermanger?useSSL=false";
+    private static String url = "jdbc:mysql://127.0.0.1:3306/usermanager?useSSL=false";
     private static String password = "";
     private static String username = "root";
     private static volatile DataSource DATASOURCE;
