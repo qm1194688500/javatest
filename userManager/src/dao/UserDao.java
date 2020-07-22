@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.*;
 
 public class UserDao {
     public static User login(User loginUser){
@@ -134,8 +135,63 @@ public class UserDao {
         }
         return 0;
     }
+    public static List<User> findByPage(int start, int rows, Map<String,String[]> map){
+        List<User> users = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select * from usermessage where 1=1";
+        StringBuilder sb = new StringBuilder(sql);
+        Set<String> set = map.keySet();
+        List<Object> list = new ArrayList<>();
+
+        for ( String key: set) {
+            String value = map.get(key)[0];
+            if (value!=null&&!"".equals(value)){
+                sb.append(" and ").append(key).append(" like ? ");
+                list.add("%" + value + "%");
+            }
+        }
+        sb.append(" limit ?,? ");
+        list.add(start);
+        list.add(rows);
+        try{
+            connection = DBUtil.getConnection();
+            ps = connection.prepareStatement(sb.toString());
+            setValues(ps,list.toArray());
+            rs = ps.executeQuery();
+            while (rs.next()){
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                user.setAddress(rs.getString("address"));
+                user.setAge(rs.getInt("age"));
+                user.setGender(rs.getString("gender"));
+                user.setQq(rs.getString("qq"));
+                user.setEmail(rs.getString("email"));
+                users.add(user);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally {
+            DBUtil.close(connection,ps,rs);
+        }
+        return users;
+    }
+    public static void setValues(PreparedStatement ps,Object... arrays) throws SQLException {
+        for (int i = 0; i <arrays.length ; i++) {
+            ps.setObject(i+1,arrays[i]);
+
+        }
+    }
+    public static int findAllRecord(Map<String, String[]> map){
+
+        return 1;
+    }
     public static void main(String[] args) {
-        User user = new User();
+        /*User user = new User();
         user.setName("马宁");
         user.setUsername("xiaoma");
         user.setPassword("123456");
@@ -148,6 +204,18 @@ public class UserDao {
             System.out.println("添加失败");
         }else{
             System.out.println("添加成功");
+        }*/
+        Map<String,String[]> map = new HashMap<>();
+        String[] names = {"张"};
+        map.put("name",names);
+        String[] addresses = {""};
+        map.put("address",addresses);
+        String[] emails = {""};
+        map.put("email",emails);
+        List<User> userList = findByPage(0,5,map);
+        for (User u:userList) {
+            System.out.println(u);
         }
+
     }
 }
