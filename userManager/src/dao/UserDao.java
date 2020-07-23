@@ -187,8 +187,38 @@ public class UserDao {
         }
     }
     public static int findAllRecord(Map<String, String[]> map){
-
-        return 1;
+        String sql = "select count(*) form usermessage where 1=1";
+        StringBuilder s = new StringBuilder();
+        s.append(sql);
+        Set<String> keySet = map.keySet();
+        List<Object> list = new ArrayList<>();
+        for (String key: keySet ) {
+            String value = map.get(key)[0];
+            if (value!=null&&!"".equals(value)){
+                s.append(" and ").append(key).append(" like ?");
+                list.add("%"+value+"%");
+            }
+        }
+        System.out.println("findAllRecord::sql" + s);
+        System.out.println("findAllRecord::list"+list);
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            connection = DBUtil.getConnection();
+            ps = connection.prepareStatement(s.toString());
+            setValues(ps,list.toArray());
+            rs = ps.executeQuery();
+            if (rs.next()){
+                count = rs.getInt(1);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            DBUtil.close(connection,ps,rs);
+        }
+        return count;
     }
     public static void main(String[] args) {
         /*User user = new User();
