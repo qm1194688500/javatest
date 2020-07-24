@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class UserDao {
-    public static User login(User loginUser){
+    public  User login(User loginUser){
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -41,7 +41,7 @@ public class UserDao {
         }
         return user;
     }
-    public static int add(User addUser) {
+    public  int add(User addUser) {
         Connection connection = null;
         PreparedStatement ps = null;
         try {
@@ -65,7 +65,7 @@ public class UserDao {
         }
         return 0;
     }
-    public static int delete(int id){
+    public  int delete(int id){
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -83,7 +83,7 @@ public class UserDao {
         }
         return 0;
     }
-    public static User find(int id){
+    public  User find(int id){
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -113,7 +113,7 @@ public class UserDao {
         }
         return user;
     }
-    public static int update(User updateUser){
+    public  int update(User updateUser){
         Connection connection = null;
         PreparedStatement ps = null;
         String sql = "update usermessage set name=?,age=?,gender=?,address=?,email=? where id=?";
@@ -135,7 +135,7 @@ public class UserDao {
         }
         return 0;
     }
-    public static List<User> findByPage(int start, int rows, Map<String,String[]> map){
+    public List<User> findByPage(int start, int rows, Map<String,String[]> map){
         List<User> users = new ArrayList<>();
         Connection connection = null;
         PreparedStatement ps = null;
@@ -186,7 +186,7 @@ public class UserDao {
 
         }
     }
-    public static int findAllRecord(Map<String, String[]> map){
+    public  int findAllRecord(Map<String, String[]> map){
         String sql = "select count(*) form usermessage where 1=1";
         StringBuilder s = new StringBuilder();
         s.append(sql);
@@ -220,8 +220,8 @@ public class UserDao {
         }
         return count;
     }
-    public static void main(String[] args) {
-        /*User user = new User();
+    /*public static void main(String[] args) {
+        User user = new User();
         user.setName("马宁");
         user.setUsername("xiaoma");
         user.setPassword("123456");
@@ -234,7 +234,7 @@ public class UserDao {
             System.out.println("添加失败");
         }else{
             System.out.println("添加成功");
-        }*/
+        }
         Map<String,String[]> map = new HashMap<>();
         String[] names = {"张"};
         map.put("name",names);
@@ -247,5 +247,5 @@ public class UserDao {
             System.out.println(u);
         }
 
-    }
+    }*/
 }
