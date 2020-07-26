@@ -140,7 +140,7 @@ public class UserDao {
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "select * from usermessage where 1=1";
+        String sql = "select * from usermessage where 1=1 ";
         StringBuilder sb = new StringBuilder(sql);
         Set<String> set = map.keySet();
         List<Object> list = new ArrayList<>();
@@ -187,20 +187,20 @@ public class UserDao {
         }
     }
     public  int findAllRecord(Map<String, String[]> map){
-        String sql = "select count(*) form usermessage where 1=1";
-        StringBuilder s = new StringBuilder();
+        String sql="select count(*) from usermessage where 1=1";
+        StringBuilder s=new StringBuilder();
         s.append(sql);
         Set<String> keySet = map.keySet();
-        List<Object> list = new ArrayList<>();
-        for (String key: keySet ) {
-            String value = map.get(key)[0];
-            if (value!=null&&!"".equals(value)){
+        List<Object> list=new ArrayList<>();
+        for(String key:keySet){
+            String value=map.get(key)[0];
+            if(value!=null && !"".equals(value)){
                 s.append(" and ").append(key).append(" like ?");
                 list.add("%"+value+"%");
             }
         }
-        System.out.println("findAllRecord::sql" + s);
-        System.out.println("findAllRecord::list"+list);
+        System.out.println("findAllRecord::sql:" + s);
+        System.out.println("findAllRecord::list:"+list);
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -210,42 +210,14 @@ public class UserDao {
             ps = connection.prepareStatement(s.toString());
             setValues(ps,list.toArray());
             rs = ps.executeQuery();
-            if (rs.next()){
-                count = rs.getInt(1);
+            if(rs.next()){
+                count = rs.getInt(1); //对总记录数赋值 等价于rs.getInt("id");
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             DBUtil.close(connection,ps,rs);
         }
         return count;
     }
-    /*public static void main(String[] args) {
-        User user = new User();
-        user.setName("马宁");
-        user.setUsername("xiaoma");
-        user.setPassword("123456");
-        user.setAddress("陕西");
-        user.setAge(18);
-        user.setGender("男");
-        user.setQq("5201314");
-        user.setEmail("44611566");
-        if (add(user)==0){
-            System.out.println("添加失败");
-        }else{
-            System.out.println("添加成功");
-        }
-        Map<String,String[]> map = new HashMap<>();
-        String[] names = {"张"};
-        map.put("name",names);
-        String[] addresses = {""};
-        map.put("address",addresses);
-        String[] emails = {""};
-        map.put("email",emails);
-        List<User> userList = findByPage(0,5,map);
-        for (User u:userList) {
-            System.out.println(u);
-        }
-
-    }*/
 }

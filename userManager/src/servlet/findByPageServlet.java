@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 @WebServlet("/findByPageServlet")
-public class findByPageServlet extends HttpServlet {
+public class FindByPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");

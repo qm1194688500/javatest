@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet("/loginServlet")
-public class loginServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
