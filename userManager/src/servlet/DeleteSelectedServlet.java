@@ -1,8 +1,6 @@
 package servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dao.PageBean;
-import entiy.User;
 import service.UserService;
 
 import javax.servlet.ServletException;
@@ -14,24 +12,27 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet("/findByPageServlet")
-public class FindByPageServlet extends HttpServlet {
+@WebServlet("/deleteSelectServlet")
+public class DeleteSelectedServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("application/json;charset=utf-8");
-        String currentPage = req.getParameter("currentPage");
-        String rows = req.getParameter("rows");
-
-        Map<String, String[]> parMap=req.getParameterMap();
-        Map<String, String[]> map = new HashMap<>(parMap);
-        map.remove("currentPage");
-        map.remove("rows");
-        int curPage = Integer.parseInt(currentPage);
-        int rowsInt = Integer.parseInt(rows);
+        String[] values = req.getParameterValues("id[]");
         UserService userService = new UserService();
-        PageBean<User> pageBean = userService.findAllByPage(curPage,rowsInt,map);
+        int sum = 0;
+        for (int i = 0; i <values.length ; i++) {
+            int j = Integer.parseInt(values[i]);
+            int delete = userService.delete(j);
+            sum += delete;
+        }
+        Map<String,Object> returnMap = new HashMap<>();
+        if (sum==values.length){
+            returnMap.put("msg",true);
+        }else{
+            returnMap.put("msg",false);
+        }
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.writeValue(resp.getWriter(),pageBean);
+        objectMapper.writeValue(resp.getWriter(),returnMap);
     }
 }

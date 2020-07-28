@@ -37,16 +37,16 @@ public class UserService {
         PageBean<User> pageBean = new PageBean<>();
         UserDao userDao = new UserDao();
         int totalCount = userDao.findAllRecord(map);
-        int totalPage = 0;
+        int totalPage ;
         if (totalCount%rows!=0){
             totalPage = totalCount/rows+1;
         }else{
             totalPage = totalCount/rows;
         }
-        pageBean.setTotalPage(totalPage);
-        pageBean.setTotalCount(totalCount);
         int start = (currentPage-1)*rows;
         List<User> userList = userDao.findByPage(start,rows,map);
+        pageBean.setTotalPage(totalPage);
+        pageBean.setTotalCount(totalCount);
         pageBean.setList(userList);
         pageBean.setCurrentPage(currentPage);
         pageBean.setRows(rows);

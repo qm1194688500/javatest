@@ -41,7 +41,7 @@ public class UserDao {
         }
         return user;
     }
-    public  int add(User addUser) {
+    public static int add(User addUser) {
         Connection connection = null;
         PreparedStatement ps = null;
         try {
@@ -188,7 +188,7 @@ public class UserDao {
     }
     public  int findAllRecord(Map<String, String[]> map){
         String sql="select count(*) from usermessage where 1=1";
-        StringBuilder s=new StringBuilder();
+        StringBuilder s = new StringBuilder();
         s.append(sql);
         Set<String> keySet = map.keySet();
         List<Object> list=new ArrayList<>();
