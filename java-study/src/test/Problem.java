@@ -2,10 +2,13 @@ package test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 public class Problem {
     public static void main(String[] args) {
-
+        int[][] A = new int[][]{{1,2},{4,5},{7,8,10,11,12},{}};
+        System.out.println(A.length);
+        System.out.println(A[0].length);
     }
     //反转链表
     public ListNode reverseList(ListNode head) {
@@ -180,5 +183,126 @@ public class Problem {
         int right = maxDepth(root.right);
         return Math.abs(left-right)<=1&&isBalanced(root.left)&&isBalanced(root.right);
     }
+    //输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
+    public int[] reversePrint(ListNode head) {
+        /*//两边遍历
+        ListNode cur = head;
+       int length = 0;
+        while (cur!=null){
+            length++;
+            cur = cur.next;
+        }
+        int[] arr = new int[length];
+        ListNode cur2 = head;
+        for (int i = length-1; i >=0 ; i--) {
+            arr[i] = cur2.val;
+            cur2 = cur2.next;
+        }
+        return arr;*/
+        //借助栈
+        Stack<ListNode> stack = new Stack<>();
+        ListNode cur = head;
+        while (cur!=null){
+            stack.push(cur);
+            cur = cur.next;
+        }
+        int[] arr = new int[stack.size()];
+        for (int i = 0; i <arr.length ; i++) {
+            arr[i] = stack.pop().val;
+        }
+        return arr;
+    }
+    //定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。
+    public ListNode reverseList1(ListNode head) {
+        if (head==null){
+            return null;
+        }
+        ListNode cur = head;
+        ListNode per = null;
 
+        while (cur!=null){
+            ListNode curNext = cur.next;
+            cur.next=per;
+            per = cur;
+            cur = curNext;
+        }
+        return per;
+    }
+    //给定单向链表的头指针和一个要删除的节点的值，定义一个函数删除该节点。
+    //
+    //返回删除后的链表的头节点。
+    public ListNode deleteNode(ListNode head, int val) {
+        if (head==null){
+            return null;
+        }
+        if (head.val==val){
+            return head.next;
+        }
+        ListNode cur = head;
+        ListNode pre = null;
+        while (cur.next!=null){
+            if (cur.val==val){
+                pre.next = cur.next;
+            }
+            pre = cur;
+            cur = cur.next;
+        }
+        if (cur.val==val){
+            pre.next=null;
+        }
+        return head;
+    }
+    //输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if (l1==null){
+            return l2;
+        }
+        if (l2==null){
+            return l1;
+        }
+        ListNode l1cur = l1;
+        ListNode l2cur = l2;
+        ListNode newHead = new ListNode(0);
+        ListNode cur = newHead;
+       while (cur!=null&&l1cur!=null&&l2cur!=null){
+           if (l1cur.val<=l2cur.val){
+               cur.next = l1cur.next;
+               cur = cur.next;
+               l1cur = l1cur.next;
+           }else{
+               cur.next = l2cur.next;
+               cur = cur.next;
+               l2cur = l2cur.next;
+           }
+       }
+       if (l1cur==null){
+           cur.next=l2cur;
+       }
+       if (l2cur==null){
+           cur.next=l1cur;
+       }
+       return newHead.next;
+    }
+    //请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，
+    // 每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null。
+    //
+
+    public Node copyRandomList(Node head) {
+        Node cur = head;
+        Node newList = new Node(0);
+        Node cur2 = newList;
+        HashMap<Node,Node> map = new HashMap<>();
+        while (cur!=null){
+            Node node = new Node(cur.val);
+            cur2.next = node;
+            map.put(cur,node);
+            cur = cur.next;
+            cur2 = cur2.next;
+        }
+        Node cur3 = head;
+        while (cur3!=null){
+           map.get(cur3).random = map.get(cur3.random);
+        }
+        return newList.next;
+    }
 }
