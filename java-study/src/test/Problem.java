@@ -288,21 +288,23 @@ public class Problem {
     //
 
     public Node copyRandomList(Node head) {
+        //Hasmap表法
         Node cur = head;
         Node newList = new Node(0);
         Node cur2 = newList;
-        HashMap<Node,Node> map = new HashMap<>();
-        while (cur!=null){
+        HashMap<Node, Node> map = new HashMap<>();
+        while (cur != null) {
             Node node = new Node(cur.val);
             cur2.next = node;
-            map.put(cur,node);
+            map.put(cur, node);
             cur = cur.next;
             cur2 = cur2.next;
         }
         Node cur3 = head;
-        while (cur3!=null){
-           map.get(cur3).random = map.get(cur3.random);
+        while (cur3 != null) {
+            map.get(cur3).random = map.get(cur3.random);
         }
         return newList.next;
     }
+
 }
