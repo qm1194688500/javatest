@@ -293,22 +293,72 @@ public class Main {
             System.out.println();
         }
     }*/
-    //超长正整数相加
-    public String AddLongInteger(String addend,String augend){
-       String sb1 = new StringBuilder(addend).reverse().toString();
-       String sb2 = new StringBuilder(augend).reverse().toString();
-       if (sb1.length()>sb2.length()){
-           for (int i = 0; i <sb1.length()-sb2.length() ; i++) {
-               sb2+="0";
-           }
-       }else{
-           for (int i = 0; i <sb2.length()-sb1.length() ; i++) {
-               sb1+="0";
-           }
-       }
-       char[] ret = new char[sb1.length()+1];
-        for (int i = 0; i <sb1.length() ; i++) {
 
+    //超长正整数相加
+     /*public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            String str1 = sc.nextLine();
+            String str2 = sc.nextLine();
+            System.out.println(AddLongInteger(str1,str2));
+       }
+    public static String AddLongInteger(String addend,String augend){
+       StringBuilder sb = new StringBuilder();
+       int carry = 0;
+       int i = addend.length()-1;
+       int j = augend.length()-1;
+       while (i>=0||j>=0||carry!=0){
+           int sum = 0;
+           if (i>=0){
+               sum+=addend.charAt(i--)-'0';
+           }
+           if (j>=0){
+               sum+=augend.charAt(j--)-'0';
+           }
+           sum+=carry;
+           sb.append(sum%10);
+           carry = sum/10;
+       }
+       return sb.reverse().toString();
+    }*/
+     //组个最小数
+    /*public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int[] arr = new int[10];
+        for (int i = 0; i <arr.length ; i++) {
+            arr[i] = sc.nextInt();
         }
-    }
+
+        StringBuilder sb = new StringBuilder();
+        for (int j = 1; j <arr.length ; j++) {
+            int time = arr[j];
+            while (time>0){
+                sb.append(j);
+                time--;
+            }
+        }
+       if (arr[0]>0){
+            int cur = arr[0];
+            while (cur>0){
+               sb.insert(1,0);
+                cur--;
+            }
+       }
+        System.out.println(sb.toString());
+    }*/
+    //尼科彻斯定理
+    /*public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            int n = sc.nextInt();
+            int ret = n * n * n;
+            int a1 = (ret - n * (n - 1)) / n;
+            String str = "";
+            for (int i = 0; i < n - 1; i++) {
+                str += a1 + "+";
+                a1 = a1 + 2;
+            }
+            str += a1;
+            System.out.println(str);
+        }
+    }*/
 }
