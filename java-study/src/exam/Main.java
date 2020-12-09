@@ -361,4 +361,31 @@ public class Main {
             System.out.println(str);
         }
     }*/
+    //饥饿的小易
+    /*public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int count = 0;
+        while (n!=0&&count<=300000){
+            n=((n<<1)+1)%1000000007;
+            count++;
+        }
+        int ret = (count+2)/3;
+        if (ret>100000){
+            System.out.println("-1");
+        }else{
+            System.out.println(ret);
+        }
+    }*/
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int group = sc.nextInt();
+
+    }
+    public static int[] Shuffle(int[] arr,int k){
+        for (int i = 0; i <k ; i++) {
+            String str = "";
+            
+        }
+    }
 }
