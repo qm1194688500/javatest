@@ -102,7 +102,7 @@ public class Main {
         String str = sc.nextLine();
         System.out.println(method(str));
     }*/
-   //删除公共字符
+    //删除公共字符
     /*public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
         String str1 = sc.nextLine();
@@ -155,7 +155,7 @@ public class Main {
        }
        return ret;
     }*/
-   //一组数中出现次数超过一半的数字
+    //一组数中出现次数超过一半的数字
    /* public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine().trim();
@@ -167,7 +167,7 @@ public class Main {
         Arrays.sort(ret);
         System.out.println(ret[ret.length/2-1]);
     }*/
-   //n个数里前k大的数
+    //n个数里前k大的数
     /*public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
@@ -259,7 +259,7 @@ public class Main {
             return ret;
         }
     }*/
-   //个位数统计
+    //个位数统计
    /* public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String n= sc.nextLine();
@@ -273,7 +273,7 @@ public class Main {
             }
         }
     }*/
-   //跟奥巴马一起学编程
+    //跟奥巴马一起学编程
     /*public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -320,7 +320,7 @@ public class Main {
        }
        return sb.reverse().toString();
     }*/
-     //组个最小数
+    //组个最小数
     /*public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int[] arr = new int[10];
@@ -377,7 +377,8 @@ public class Main {
             System.out.println(ret);
         }
     }*/
-    public static void main(String[] args) {
+    //统计某个分数的学生人数
+    /*public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()){
             int n = sc.nextInt();
@@ -394,6 +395,33 @@ public class Main {
             }
             System.out.println(count);
         }
-
+    }*/
+    //DNA序列
+    /*public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        int x = sc.nextInt();
+        System.out.println(method(str,x));
     }
+
+    public static String method(String s, int x){
+        String Max = "";
+        int max = 0;
+        for (int i = 0; i <=s.length()-x ; i++) {
+            String str = s.substring(i,i+x);
+            int j = 0;
+            int cont = 0;
+            while (j<str.length()){
+                if (str.charAt(j)=='G'||str.charAt(j)=='C'){
+                    cont++;
+                }
+                j++;
+            }
+            if (cont>max){
+                max = cont;
+                Max = str;
+            }
+        }
+        return Max;
+    }*/
 }
