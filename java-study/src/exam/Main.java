@@ -424,4 +424,122 @@ public class Main {
         }
         return Max;
     }*/
+    //找X
+    /*public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            int[] arr = new int[sc.nextInt()];
+            for (int i = 0; i <arr.length ; i++) {
+                arr[i] = sc.nextInt();
+            }
+            int x = sc.nextInt();
+            boolean judge = false;
+            for (int i = 0; i <arr.length ; i++) {
+                if (arr[i]==x){
+                    System.out.println(i);
+                    judge = true;
+                }
+            }
+            if (!judge){
+                System.out.println("-1");
+            }
+        }
+    }*/
+    /*//整数与IP地址间转换
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while(sc.hasNext()){
+            String IP = sc.nextLine();
+            String number = sc.nextLine();
+            System.out.println(method1(IP));
+            System.out.println(method2(number));
+        }
+    }
+    //ip转数字
+    public static Long method1(String str){
+        String[] arr = str.split("\\.");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i <arr.length ; i++) {
+            String binaryString = Integer.toBinaryString(Integer.valueOf(arr[i]));
+            String cur = "00000000"+binaryString;
+            String ret = cur.substring(cur.length()-8);
+            sb.append(ret);
+        }
+        return Long.parseLong(sb.toString(),2);
+    }
+    //数字转IP
+    public static String method2(String str){
+        String cur = Long.toBinaryString(Long.valueOf(str));
+        String ret = "00000000000000000000000000000000"+cur;
+        String binaryString = ret.substring(ret.length()-32);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i <4 ; i++) {
+            String string = binaryString.substring(i*8,(i+1)*8);
+            if (i!=3){
+                sb.append(Long.parseLong(string,2)+".");
+            }else{
+                sb.append(Long.parseLong(string,2));
+            }
+        }
+        return sb.toString();
+    }*/
+    //守形数
+    /*public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            String str = sc.nextLine();
+            method(str);
+        }
+    }
+    public static void method(String str){
+        int x = Integer.valueOf(str);
+        int y = x*x;
+        String str2 = new String(String.valueOf(y));
+        String ret = str2.substring(str2.length()-str.length());
+        if (ret.equals(str)){
+            System.out.println("Yes!");
+        }else{
+            System.out.println("NO!");
+        }
+    }*/
+    //密码验证合格程序：1长度超过8位，2包括大小写字母，数字，其他符号。至少三种，3不能有相同长度超2的子串重复
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            String str = sc.nextLine();
+            if (method(str)){
+                System.out.println("OK");
+            }else{
+                System.out.println("NG");
+            }
+        }
+    }
+    public static boolean method(String str){
+        if (str.length()<=8){
+          return false;
+        }
+        Map<Integer,Boolean> map = new HashMap<>();
+        for (int i = 0; i <str.length() ; i++) {
+            char c = str.charAt(i);
+            if (c>='0'&&c<='9'){
+                map.put(1,true);
+            }else if (c>='A'&&c<='Z'){
+                map.put(2,true);
+            }else if (c>='a'&&c<='z'){
+                map.put(3,true);
+            }else {
+                map.put(4,true);
+            }
+        }
+        if (map.size()<3){
+            return false;
+        }
+        boolean judge = true;
+        for (int i = 0; i <str.length()-3 ; i++) {
+            if (str.substring(i+1).contains(str.substring(i,i+3))){
+                judge=false;
+            }
+        }
+        return judge;
+    }
 }

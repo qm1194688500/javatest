@@ -20,7 +20,7 @@ public class DeleteServlet extends HttpServlet {
         UserService userService = new UserService();
         int ret = userService.delete(id);
         if (ret==1){
-            resp.sendRedirect("/list.html");
+            resp.sendRedirect("/usermanager/list.html");
         }else{
             System.out.println("删除失败“");
             resp.getWriter().write("<h2 删除失败！>"+"</h2>");
