@@ -1,6 +1,8 @@
 package exam;
 
+import javax.annotation.processing.SupportedSourceVersion;
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -503,7 +505,7 @@ public class Main {
         }
     }*/
     //密码验证合格程序：1长度超过8位，2包括大小写字母，数字，其他符号。至少三种，3不能有相同长度超2的子串重复
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()){
             String str = sc.nextLine();
@@ -541,5 +543,306 @@ public class Main {
             }
         }
         return judge;
+    }*/
+    //奇偶校验
+    /*public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            char[] arr = sc.nextLine().toCharArray();
+            method(arr);
+        }
     }
+    public static void method(char[] arr){
+        for (int i = 0; i <arr.length ; i++) {
+            int x = arr[i];
+            int judge ;
+            int count = 0;
+            String str = "0000000"+Integer.toBinaryString(x);
+            String ret = str.substring(str.length()-7);
+            for (int j = 0; j <ret.length() ; j++) {
+                if (ret.charAt(j)=='1'){
+                    count++;
+                }
+            }
+            if (count%2==0){
+                judge=1;
+
+            }else{
+                judge=0;
+            }
+            System.out.println(judge+ret);
+        }
+    }*/
+    //在霍格沃兹找零钱
+   /* public static void main(String[] args){
+        int[] W = {17*29,29,1};
+        Scanner sc = new Scanner(System.in);
+        String[] p = sc.next().split("\\.");
+        String[] a = sc.next().split("\\.");
+        int[] P = {Integer.parseInt(p[0]),Integer.parseInt(p[1]),Integer.parseInt(p[2])};
+        int[] A = {Integer.parseInt(a[0]),Integer.parseInt(a[1]),Integer.parseInt(a[2])};
+        int Px = P[0]*W[0]+P[1]*W[1]+P[2]*W[2];
+        int Ax = A[0]*W[0]+A[1]*W[1]+A[2]*W[2];
+        int ret = Ax-Px;
+        if (ret>=0){
+            System.out.println(ret/W[0]+"."+ret%W[0]/W[1]+"."+ret%W[0]%W[1]);
+        }else{
+            System.out.println("-"+ret/W[0]+"."+ret%W[0]/W[1]+"."+ret%W[0]%W[1]);
+        }
+    }*/
+   //损坏的键盘
+    /*public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            String str1 = sc.nextLine().toUpperCase();
+            String str2 = sc.nextLine().toUpperCase();
+            LinkedHashSet<Character> set = new LinkedHashSet<>();
+            for (int i = 0; i <str1.length() ; i++) {
+                if (!str2.contains(str1.charAt(i)+"")){
+                    set.add(str1.charAt(i));
+                }
+            }
+            Iterator i = set.iterator();
+            while (i.hasNext()){
+                System.out.print(i.next());
+            }
+        }
+    }*/
+    //字母统计
+    /*public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            String str = sc.nextLine();
+            int[] arr = new int[26];
+            for (int i = 0; i <str.length() ; i++) {
+                if (str.charAt(i)>='A'&&str.charAt(i)<='Z'){
+                    int x = str.charAt(i)-'A';
+                    arr[x]++;
+                }
+            }
+            for (int i = 0; i <arr.length ; i++) {
+                System.out.println((char)(i+65)+":"+arr[i]);
+            }
+        }
+    }
+*/
+    //十六进制转十进制
+   /* public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            String str = sc.nextLine().substring(2);
+            String sb =( new StringBuilder(str)).reverse().toString();
+            int ret = 0;
+            for (int i = 0; i <sb.length(); i++) {
+                if (sb.charAt(i)>='A'&&sb.charAt(i)<='F'){
+                    ret+=(sb.charAt(i)-55)*Math.pow(16,i);
+                }else{
+                    ret+=Integer.valueOf(sb.charAt(i)+"")*Math.pow(16,i);
+                }
+            }
+            System.out.println(ret);
+        }
+    }*/
+   //木棒拼图
+   /* public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            int n = sc.nextInt();
+            LinkedList<Integer> list = new LinkedList<>();
+            for (int i = 0; i <n ; i++) {
+                int judge = sc.nextInt();
+                int leng = sc.nextInt();
+                if (judge==1){
+                    list.add(leng);
+                }else{
+                    int index = list.indexOf(leng);
+                    list.remove(index);
+                }
+                Collections.sort(list);
+                if (list.size()<3){
+                    System.out.println("No");
+                }else{
+                    Iterator iterator = list.listIterator();
+                    int ret = 0;
+                    while (iterator.hasNext()){
+                        int x = (int) iterator.next();
+                        ret+=x;
+                    }
+                    if (ret-list.getLast()>list.getLast()){
+                        System.out.println("Yes");
+                    }else{
+                        System.out.println("No");
+                    }
+                }
+            }
+        }
+    }*/
+   //二维数组打印
+   /* public static void main(String[] args) {
+        int[][] arr = {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}};
+        int[] ret = arrayPrint(arr,arr.length);
+        System.out.println(Arrays.toString(ret));
+    }
+    public static int[] arrayPrint(int[][] arr, int n) {
+        int[] ret = new int[n*n];
+        int cur = 0;
+        int startX = 0;
+        int startY = n-1;
+        while (startX<n){
+            int x = startX;
+            int y = startY;
+            while (x<n&&y<n){
+                ret[cur++] = arr[x++][y++];
+            }
+            if (startY>0){
+                startY--;
+            }else{
+                startX++;
+            }
+        }
+        return ret;
+    }*/
+   //回文串
+    /*public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            String str = sc.nextLine();
+            boolean ret = false;
+            for (int i = 0; i <str.length() ; i++) {
+                StringBuilder sb = new StringBuilder(str);
+                StringBuilder cur = sb.deleteCharAt(i);
+                if (judge(cur.toString())){
+                    ret=true;
+                }
+            }
+            if (ret){
+                System.out.println("YES");
+            }else{
+                System.out.println("NO");
+            }
+        }
+    }
+    public static boolean judge(String str){
+        StringBuilder sb = new StringBuilder(str);
+        if (str.equals(sb.reverse().toString())){
+            return true;
+        }else{
+            return false;
+        }
+    }*/
+    //密码加解密
+    /*public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        while(sc.hasNext()){
+            String str1 = sc.nextLine();
+            String str2 = sc.nextLine();
+            Encrypt(str1);
+            unEncrypt(str2);
+        }
+    }
+    public static void Encrypt(String str){
+    //加密
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i <str.length() ; i++) {
+            if (str.charAt(i)>='0'&&str.charAt(i)<='9'){
+                if (str.charAt(i)=='9'){
+                    sb.append('0');
+                }else{
+                    sb.append((char)(str.charAt(i)+1));
+                }
+            }
+            if (str.charAt(i)>='A'&&str.charAt(i)<='Z'){
+                if (str.charAt(i)=='Z'){
+                    sb.append('a');
+                }else{
+                    String cur = ((char)(str.charAt(i)+1)+"").toLowerCase();
+                    sb.append(cur);
+                }
+            }
+            if (str.charAt(i)>='a'&&str.charAt(i)<='z'){
+                if (str.charAt(i)=='z'){
+                    sb.append('A');
+                }else{
+                    String cur = ((char)(str.charAt(i)+1)+"").toUpperCase();
+                    sb.append(cur);
+                }
+            }
+        }
+        System.out.println(sb.toString());
+    }
+    public static void unEncrypt(String str){
+    //解密
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i <str.length() ; i++) {
+            if (str.charAt(i)>='0'&&str.charAt(i)<='9'){
+                if (str.charAt(i)=='0'){
+                    sb.append('9');
+                }else{
+                    sb.append((char)(str.charAt(i)-1));
+                }
+            }
+            if (str.charAt(i)>='A'&&str.charAt(i)<='Z'){
+                if (str.charAt(i)=='A'){
+                    sb.append('z');
+                }else{
+                    String cur = ((char)(str.charAt(i)-1)+"").toLowerCase();
+                    sb.append(cur);
+                }
+            }
+            if (str.charAt(i)>='a'&&str.charAt(i)<='z'){
+                if (str.charAt(i)=='a'){
+                    sb.append('Z');
+                }else{
+                    String cur = ((char)(str.charAt(i)-1)+"").toUpperCase();
+                    sb.append(cur);
+                }
+            }
+        }
+        System.out.println(sb.toString());
+    }*/
+    //坐标移动
+    /*public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while(sc.hasNext()){
+            String[] str = sc.nextLine().split(";");
+            move(str);
+        }
+    }
+    public static void move(String[] str){
+        int[] ret = {0,0};
+        for (int i = 0; i <str.length ; i++) {
+            if (str[i].length()==3){
+                if (str[i].charAt(0)=='A'||str[i].charAt(0)=='S'||str[i].charAt(0)=='D'||str[i].charAt(0)=='W'){
+                    if ((str[i].charAt(1)>='0'&&str[i].charAt(1)<='9')&&(str[i].charAt(2)>='0'&&str[i].charAt(2)<='9')){
+                        if (str[i].charAt(0)=='A'){
+                            ret[0]-=Integer.valueOf(str[i].substring(1));
+                        }else if (str[i].charAt(0)=='D'){
+                            ret[0]+=Integer.valueOf(str[i].substring(1));
+                        }else if (str[i].charAt(0)=='W'){
+                            ret[1]+=Integer.valueOf(str[i].substring(1));
+                        }else{
+                            ret[1]-=Integer.valueOf(str[i].substring(1));
+                        }
+                    }
+                }
+            }
+            if (str[i].length()==2){
+                if (str[i].charAt(0)=='A'||str[i].charAt(0)=='S'||str[i].charAt(0)=='D'||str[i].charAt(0)=='W'){
+                    if ((str[i].charAt(1)>='0'&&str[i].charAt(1)<='9')){
+                        if (str[i].charAt(0)=='A'){
+                            ret[0]-=Integer.valueOf(str[i].substring(1));
+                        }else if (str[i].charAt(0)=='D'){
+                            ret[0]+=Integer.valueOf(str[i].substring(1));
+                        }else if (str[i].charAt(0)=='W'){
+                            ret[1]+=Integer.valueOf(str[i].substring(1));
+                        }else{
+                            ret[1]-=Integer.valueOf(str[i].substring(1));
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println(ret[0]+","+ret[1]);
+    }*/
+
 }
